@@ -38,8 +38,8 @@ func nhsNumberCheckBool(nhsNumber: String) -> Bool {
     while j < 10 {
         tot += multiplier * (rangeCheckIterate - 10*(Int(rangeCheckIterate/10)))
         rangeCheckIterate = Int(rangeCheckIterate/10)
-        j++
-        multiplier--
+        j+=1
+        multiplier-=1
     }
     // computes tot(mod 11) then takes this from 11
     var m:Int = 11 - (tot % 11)
@@ -59,7 +59,7 @@ var nhsChar: String
 while z < 64100000 {
     nhsChar = String(nhs)
     nhsNumberCheckBool(nhsChar)
-	z++
+	z+=1
 }
 
 //nhsNumberCheckBool("416 401 3622")

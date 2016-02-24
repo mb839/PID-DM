@@ -1,3 +1,5 @@
+import Foundation
+
 func nhsNumberCheckBool(nhsNumber: String) -> Bool {
 	// returns a bool corresponding to "is this a valid NHS number?" 
 	// See http://www.datadictionary.nhs.uk/version2/data_dictionary/data_field_notes/n/nhs_number_de.asp?shownav=0	
@@ -56,10 +58,22 @@ func nhsNumberCheckBool(nhsNumber: String) -> Bool {
 var z: Int = 0
 var nhs: Int = 4160000000
 var nhsChar: String
+
+let date_start = NSDate()
+
+// loops from z which is 0 by default to some number, calculating if the number
+// is valid, returning a bool then adding 1 to both z and the nhs variable
+// by this method all numbers in the starting nhs value to nhs + some number
+// will be checked for validity
+
 while z < 64100000 {
     nhsChar = String(nhs)
-    nhsNumberCheckBool(nhsChar)
+	// these bits are for testing, leave as comments by default
+	// print(nhsChar)
+	// print(nhsNumberCheckBool(nhsChar))
+	nhsNumberCheckBool(nhsChar)
 	z+=1
+	nhs+=1
 }
 
-//nhsNumberCheckBool("416 401 3622")
+print("\(-date_start.timeIntervalSinceNow)")

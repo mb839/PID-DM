@@ -77,20 +77,21 @@ for (i in (nrow(pdflists))) {
 	# grabs the names of all the .ped files in the PED directory and lists
 	# them in descending date order.
 	pedlist <- file.info(list.files(path="/var/www/bpd/latest/PED/",
-									all.files=TRUE,recursive=FALSE,
-									include.dirs=FALSE,pattern=".ped",
-									full.names=TRUE))
+					all.files=TRUE,recursive=FALSE,
+					include.dirs=FALSE,pattern=".ped",
+					full.names=TRUE))
 	
 	pedlist = pedlist[with(pedlist, order(as.POSIXct(mtime), 
-										decreasing=TRUE)), ]
+				decreasing=TRUE)), ]
 	
 	peds = gsub("/var/www/bpd/latest/PED//", "", rownames(pedlist))
 	
 	#reads int he most recent ped files
 	ped1 <- subset(read.delim(file=paste("/var/www/bpd/latest/PED/",
-										peds[1],sep=""), 
-							header = FALSE, sep = "\t", 
-							stringsAsFactors=FALSE), select = c(1,2))
+						peds[1],sep=""), 
+						header = FALSE, sep = "\t", 
+						stringsAsFactors=FALSE),
+						select = c(1,2))
 							
 	#adds a flag
 	ped1$inped <- 1
@@ -113,23 +114,23 @@ for (i in (nrow(pdflists))) {
 	# puts into a dataframe starting with full paths.
 	file <- NULL
 	files <- gsub("^.*?/","",list.files(path="/var/www/bpd/latest/PED/PDF",
-										all.files=TRUE,recursive=TRUE,
-										include.dirs=FALSE,pattern=".pdf",
-										full.names=TRUE))
+						all.files=TRUE,recursive=TRUE,
+						include.dirs=FALSE,pattern=".pdf",
+						full.names=TRUE))
 	
 	file <- as.data.frame(files, 
-						stringsAsFactors = FALSE)
+				stringsAsFactors = FALSE)
 						
 	# Creates a new variable with just the name of the pdf
 	file$names <- gsub("^.*?/","",list.files(path="/var/www/bpd/latest/PED/PDF",
-											all.files=TRUE,recursive=TRUE,
-											include.dirs=FALSE, pattern=".pdf",
-											full.names=FALSE))
+							all.files=TRUE,recursive=TRUE,
+							include.dirs=FALSE, pattern=".pdf",
+							full.names=FALSE))
 	
 	#splits apart the string of pdfs that need to be appended and adds a flag
 	pdf <- unlist(strsplit(zz, split=" "))
 	zx <- as.data.frame(pdf,
-						stringsAsFactors = FALSE)
+				stringsAsFactors = FALSE)
 	zx$pickme <- 1
 	
 	#merges the list of files that are needed with the list of files available

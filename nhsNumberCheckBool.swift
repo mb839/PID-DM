@@ -70,8 +70,8 @@ while z < 64100000 {
     nhsChar = String(nhs)
 	// these bits are for testing, leave as comments by default
 	// print(nhsChar)
-	// print(nhsNumberCheckBool(nhsChar))
-	nhsNumberCheckBool(nhsChar)
+	// print(nhsNumberCheckBool(nhsNumber: nhsChar))
+	nhsNumberCheckBool(nhsNumber: nhsChar)
 	z+=1
 	nhs+=1
 }
